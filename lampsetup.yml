@@ -2,7 +2,7 @@
   tasks:
     - name: install lamp stack
       become: 'yes'
-      become_user: ansible
+      become_user: root
       yum:
         pkg:
           - httpd
@@ -13,14 +13,14 @@
         update_cache: 'yes'
     - name: start apache service
       become: 'yes'
-      become_user: ansible
+      become_user: root
       service:
         name: httpd
         state: started
         enabled: 'yes'
     - name: start mysql service
       become: 'yes'
-      become_user: ansible
+      become_user: root
       service:
         name: mariadb
         state: started
@@ -29,7 +29,7 @@
       file: path=/var/www/html state=directory mode=0755
     - name: deploy index.html
       become: 'yes'
-      become_user: ansible
+      become_user: root
       copy:
         src: index.html
         dest: /var/www/html/index.html
